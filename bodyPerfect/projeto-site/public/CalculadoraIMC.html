@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="./stylesheets/CalculadoraIMC.css">
+    <link rel="stylesheet" type="text/css" href="./imagens.html/calculadora.jpg">
+    <link href="https://fonts.googleapis.com/css?family=Cabin|Source+Serif+Pro&display=swap" rel="stylesheet">
+    <script src="./funcoes.js"></script>
+    <title>Calculadora IMC</title>
+</head>
+
+<body>
+    <div class="estrutura">
+        <div class="menu">
+
+            <ul>
+                <li>
+                    <a href="./index.html">Home</a>
+                    <button onclick="logoff()"> <a href=""></a> Sair</button>
+                    <div id="b_usuario" style="font-size: 25px;"></div>
+                </li>
+
+
+            </ul>
+
+
+
+
+        </div>
+
+
+        <div class="formulario">
+            <form id="form_calculadora" method="post" onsubmit="return entrar()">
+                <h2>Calculadora IMC </h2>
+                <input type="text" required name="valor_peso" required minlength="4" id="valor_peso"
+                    placeholder="Digite o peso">
+                <input type="text" required name="valor_altura" required minlength="4" id="valor_altura"
+                    placeholder="Digite sua altura">
+                <button id="imc" onclick="calcIMC ()">Calcular IMC</button>
+                <div id="msg"></div>
+
+
+        </div>
+    </div>
+
+
+</body>
+
+</html>
+<script>
+    function calcIMC() {
+        var peso = Number(valor_peso.value);
+        var altura = Number(valor_altura.value);
+        var imc = peso / (altura * altura);
+
+        //fazer um link com pagina vegetariano e vegano com informações //
+        var mensagem = imc >= 35 || imc >= 39.99 ? window.open(`./obesidadeII.html`) :
+
+            imc >= 30 && imc <= 34.99 ? window.open(`./obesidadeI.html`) :
+                imc >= 25 && imc <= 29.99 ? window.open(`./acimadopeso.html`) :
+                    imc >= 18.5 && imc <= 24.99 ? window.open(`./pesonormal.html`) :
+                        imc < 18.5 ? window.open(`./abaixodopeso.html`) : '';
+        msg.innerHTML = mensagem;
+
+
+    }
+
+</script>
+
+<script>
+    verificar_autenticacao()
+
+</script>

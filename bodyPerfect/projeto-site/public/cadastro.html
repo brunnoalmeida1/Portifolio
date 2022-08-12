@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" type="text/css" href="./stylesheets/cadastro.css">
+    <link rel="stylesheet" type="text/css" href="./imagens.html/login09.jpeg">
+
+    <title>Registre-se</title>
+</head>
+
+<body>
+
+    <div class="estrutura">
+        <div class="menu">
+            <ul>
+                <li><a href="./index.html">Home</a></li>
+            </ul>
+        </div>
+        <div class="formulario">
+            <form id="form_cadastro" method="post" onsubmit="return cadastrar()">
+                <h2> Cadastro</h2>
+                <input type="text" name="nome" required minlength="4" placeholder="Nome Completo:"><br>
+                  <input type="text" name="email"  required minlength="4" placeholder="E-mail:"> <br>
+                <input type="text" name="login" required minlength="4" placeholder="login"><br>                                             
+                <input type="password" name="senha" required minlength="8" placeholder="Senha:"> <br>
+                <!-- <input type="password" name="senha" required minlength="8" name=" Repetir senha" placeholder="Repetir senha:"> <br> -->
+
+                <div class="btn">
+
+                    <button id="cadastrar()">Entrar</button>
+                </div>
+
+            </form>
+        </div>
+
+        <img src="aguarde2.gif" id="img_aguarde" style="display: none;" width="100px">
+
+        <div id="div_erro" style="background-color: sandybrown; color: maroon; display: none;">
+            Erro no cadastro
+        </div>
+
+    </div>
+</body>
+
+</html>
+
+<script>
+
+    function cadastrar() {
+        // aguardar();
+        var formulario = new URLSearchParams(new FormData(form_cadastro));
+        fetch("/usuarios/cadastrar", {
+            method: "POST",
+            body: formulario
+        }).then(function (response) {
+
+            if (response.ok) {
+
+                window.location.href = 'login.html';
+
+            } else {
+
+                alert('Erro de cadastro!');
+
+            }
+        });
+
+        return false;
+    }
+
+    // function aguardar() {
+    //     btn_entrar.disabled = true;
+    //     img_aguarde.style.display = 'block';
+    //     div_erro.style.display = 'none';
+    // }
+
+    // function finalizar_aguardar() {
+    //     btn_entrar.disabled = false;
+    //     img_aguarde.style.display = 'none';
+    //     div_erro.style.display = 'block';
+    // }
+
+</script>
